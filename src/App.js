@@ -11,6 +11,10 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import * as cloneDeep from 'lodash/cloneDeep';
 import Modal from 'react-modal';
+import { Layout } from 'antd';
+import 'antd/dist/antd.css';
+import { Content } from 'antd/lib/layout/layout';
+import Sider from 'antd/lib/layout/Sider';
 
 Modal.setAppElement(document.querySelector("#root"));
 
@@ -185,11 +189,14 @@ function App() {
         }} />
         <Route path='/browse' exact render={() => {
           return (
+            <Layout>
             <div>
               {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
               <div style={{ filter: mainStyle }}>
                 <Header aboutOnClick={openModal} />
+                
                 <div className="main-container">
+                  <Sider width="500">
                   <div>
                     {!showDetails ? <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs}/> : null}
                     {showFavs ? <button className="favorites-toggle-left" onClick={toggleDisplay}>←</button>: <button className="favorites-toggle-right" onClick={toggleDisplay}><span className="tooltip-text">Favorites</span>→</button>}
@@ -197,11 +204,16 @@ function App() {
                       <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay}/>
                     </article>
                   </div>
-                  {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs}/> : null}
-                  {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs}/> : null}
+                  </Sider>
+                  <Content>
+                    {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs}/> : null}
+                    {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs}/> : null}
+                  </Content>
                 </div>
+                
               </div>
             </div>
+            </Layout>
           );
         }} />
       </main>
