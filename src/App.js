@@ -196,7 +196,7 @@ function App() {
                 <Header aboutOnClick={openModal} />
                 
                 <div className="main-container">
-                  <Sider width="500">
+                  {/* <Sider width="500"> */}
                   <div>
                     {!showDetails ? <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs}/> : null}
                     {showFavs ? <button className="favorites-toggle-left" onClick={toggleDisplay}>←</button>: <button className="favorites-toggle-right" onClick={toggleDisplay}><span className="tooltip-text">Favorites</span>→</button>}
@@ -204,7 +204,8 @@ function App() {
                       <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay}/>
                     </article>
                   </div>
-                  </Sider>
+                  {/* </Sider> */}
+                  {/* Tentatively removing sider as it doesn't actually appear to add much */}
                   <Content>
                     {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs}/> : null}
                     {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs}/> : null}

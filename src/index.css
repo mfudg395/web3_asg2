@@ -98,8 +98,8 @@ h2 {
 }
 
 .grid-item {
-  margin: 5px;
-  padding: 5px;
+  /* margin: 5px; */
+  /* padding: 5px; */
 }
 
 .favorites-bar, .favorites-bar-hidden {
@@ -217,6 +217,7 @@ h2 {
 .plays-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0;
 }
 
 .play-card {
