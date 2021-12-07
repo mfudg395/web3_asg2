@@ -17,7 +17,7 @@ const PlayList = (props) => {
         <div className="black-border">
             <div className="sort-container">
                 <Space size={20}>
-                <h2 className="inline-block">Sort by:</h2>
+                    <h2 className="inline-block">Sort by:</h2>
                     <Button type="primary" name="title" size="large" onClick={handleSort}>Title</Button>
                     <Button type="primary" name="year" size="large" onClick={handleSort}>Year</Button>
                 </Space>
