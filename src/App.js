@@ -197,7 +197,7 @@ function App() {
                 
                 <div className="main-container">
                   {/* <Sider width="500"> */}
-                  <div>
+                  <div className="sidebar">
                     {!showDetails ? <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs}/> : null}
                     {showFavs ? <button className="favorites-toggle-left" onClick={toggleDisplay}>←</button>: <button className="favorites-toggle-right" onClick={toggleDisplay}><span className="tooltip-text">Favorites</span>→</button>}
                     <article className={showFavs ? "favorites-bar" : "favorites-bar-hidden"}>
