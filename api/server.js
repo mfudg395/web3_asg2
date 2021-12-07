@@ -68,8 +68,7 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
 
 // login and logout handlers
 app.get('/login', (req, res) => {
-    // res.render('login.ejs', { message: req.flash('error') });
-    console.log("You need to be logged in to see this content");
+    res.render('login.ejs', { message: req.flash('error') });
 });
 
 app.post('/login', async (req, resp, next) => {
@@ -90,7 +89,7 @@ app.get('/logout', (req, resp) => {
 
 // customize the 404 error with our own middleware function
 app.use(function (req, res, next) {
-    res.status(404).send("Sorry can't find that!")
+    res.status(404).send("404 Not Found - Sorry can't find that!")
 });
 
 // create connection to database

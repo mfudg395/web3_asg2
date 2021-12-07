@@ -2,7 +2,7 @@ const helper = require('./helpers.js');
 
 // Returns all plays (DO NOT INCLUDE PLAYTEXT)
 const handleAllPlays = (app, Play) => {
-    app.get('/api/list', (req, resp) => {
+    app.get('/api/list', helper.ensureAuthenticated, (req, resp) => {
         Play.find({}, '-playText', (err, data) => {
             if (err) {
                 resp.json({ message: 'Unable to connect to plays' });
