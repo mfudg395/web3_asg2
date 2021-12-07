@@ -1,5 +1,6 @@
 import { Button, Input, Space } from 'antd';
 import {Select} from 'antd';
+import FormItem from 'antd/lib/form/FormItem';
 import React, {useEffect, useState} from 'react';
 const {Option} = Select;
 
@@ -43,8 +44,6 @@ const PlayFilter = (props) => {
             updateFilterBeforeYear(e.currentTarget.value);
         else if (e.currentTarget.name === "after-year-filter")
             updateFilterAfterYear(e.currentTarget.value);
-        else
-            updateFilterGenre(e.currentTarget.value);
     }
 
     return (
@@ -70,7 +69,12 @@ const PlayFilter = (props) => {
                 <option value="tragedy">Tragedy</option>
                 <option value="history">History</option>
             </select> */}
-            <Select name="genre-filter" onChange={handleChange}>
+            {/**The only way to access the Select value with ant-design is to pass it into the onChange event,
+             * which is why it has a different onChange implementation than the other inputs.
+             */}
+            <Select name="genre-filter" defaultValue="" onChange={(value) => {
+                updateFilterGenre(value);
+            }}>
                 <Option value=""></Option>
                 <Option value="comedy">Comedy</Option>
                 <Option value="tragedy">Tragedy</Option>
