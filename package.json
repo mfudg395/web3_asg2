@@ -56,5 +56,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "This assignment was completed by Anthony Dang, Matthew Fudge, and Nahuel Paladino.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfudg395/web3_asg2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfudg395/web3_asg2/issues"
   }
 }
