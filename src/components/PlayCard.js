@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+import { Button, Card } from 'antd';
 import React from 'react';
 
 const PlayCard = (props) => {
@@ -23,7 +23,7 @@ const PlayCard = (props) => {
         //     </div>
             
         // </div>
-        <Card title={props.play.title} extra={<button className="view-button" onClick={handleViewClick}>View</button>}>
+        <Card title={props.play.title} extra={<Button type="primary" onClick={handleViewClick}>View</Button>}>
             <img src={src} alt={props.play.title} className="play-card-image"/>
             <button className="favorite-button" onClick={handleFavoriteClick}>❤️</button>
             {props.play.filename != "" ? <span className="has-text-icon">📙</span> : null}
