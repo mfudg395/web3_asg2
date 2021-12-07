@@ -33,7 +33,7 @@ button:hover {
 }
 
 .list-view-header {
-  background-color: #B288C0;
+  background-color: #6186ff;
 }
 .flex-container {
   display: flex;
@@ -53,7 +53,7 @@ button:hover {
   margin-left: auto;
   margin-right: 50px;
 
-  background-color: #7E5A9B;
+  background-color: #4346ff;
   border-radius: 12px;
   color: #FFFFFF;
   border: 1px solid #FFFFFF;
@@ -105,7 +105,7 @@ h2 {
 .favorites-bar, .favorites-bar-hidden {
   border: 1px solid black;
   margin: 5px;
-  background-color: #ddbfdd;
+  background-color: #e7e7e7;
   transition: margin-right 1s;
   height: 518px;
 }
@@ -126,7 +126,7 @@ h2 {
   display: grid;
   grid-column: 2/3;
   grid-template-columns: 1fr 1.5fr;
-  background-color: #ddbfdd;
+  background-color: #e7e7e7;
   margin: 5px;
   padding: 10px;
   border: 1px solid black;
@@ -150,7 +150,7 @@ h2 {
 }
 
 .filter-button, .clear-filter-button, .favorites-toggle-right, .favorites-toggle-left, .sort-title-button, .sort-year-button, .about-close-button {
-  background-color: #7E5A9B;
+  background-color: #6186ff;
   color: #FFFFFF;
   border: 1px solid #FFFFFF;
   padding: 5px 10px 5px 10px;
@@ -216,7 +216,8 @@ h2 {
 
 .play-likely-date {
   float: right;
-  font-size: 14pt;
+  font-size: 12pt;
+  font-weight: 500;
   margin-top: 5px;
 }
 
