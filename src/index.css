@@ -143,8 +143,7 @@ h2 {
 .HomeBrowserContainer input[type=text] {
   padding: 5px 10px 5px 10px;
 }
-
-.filter-button, .clear-filter-button, .favorites-toggle-right, .favorites-toggle-left, .sort-title-button, .sort-year-button, .about-close-button {
+.favorites-toggle-right, .favorites-toggle-left, .sort-title-button, .sort-year-button, .about-close-button {
   background-color: #6186ff;
   color: #FFFFFF;
   border: 1px solid #FFFFFF;
@@ -154,6 +153,10 @@ h2 {
   font-size: 12pt;
   width: 75px;
   margin-left: auto;
+}
+
+.filter-button, .clear-filter-button {
+  width: 75px;
 }
 
 .favorites-toggle-left {
@@ -304,7 +307,7 @@ h2 {
 }
 
 .remove-favorite {
-  background-color: #ddbfdd;
+  background-color: #e7e7e7;
   border:none;
 }
 
@@ -345,7 +348,7 @@ h2 {
 }
 
 .details-favorite-button {
-  background-color: #f8ddf8;
+  background-color: #f0f2f5;
   border: none;
   padding: 5px 10px 5px 10px;
   text-align: center;
