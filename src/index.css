@@ -118,20 +118,15 @@ h2 {
 }
 
 .filter {
-  /* display: grid;
+  display: grid;
   grid-column: 2/3;
-  grid-template-columns: 1fr 1.5fr; */
+  grid-template-columns: 1fr 1.5fr;
   background-color: #e7e7e7;
   margin: 5px;
   padding: 10px;
   border: 1px solid black;
   height: 265px;
 }
-/* 
-.filter-fav-hidden {
-  display: grid;
-  grid-column: 1/2;
-} */
 
 .filter-label {
   padding-top: 7.5px;
@@ -278,13 +273,6 @@ h2 {
 .view-button {
   float: right;
 }
-
-.has-text-icon {
-  /* margin-top: 5px;
-  margin-right: -20px;
-  margin-left: 10px; */
-}
-
 
 .legend-icon {
   margin-left: 50px;

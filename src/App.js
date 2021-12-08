@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import * as cloneDeep from 'lodash/cloneDeep';
 import Modal from 'react-modal';
-import { Layout } from 'antd';
+import { Button, Layout, Space } from 'antd';
 import 'antd/dist/antd.css';
 import { Content } from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
@@ -73,11 +73,11 @@ function App() {
   * Sort plays by a given field as a String - either by title or by year. The resulting plays
   * is then updated with the sorted plays
   */
-  const sortPlays = (sortField) => {
+  const sortPlays = (e) => {
     const playsCopy = cloneDeep(playResults);
     playsCopy.sort(function (a, b) {
-      if (sortField === "title") return a.title > b.title ? 1 : -1;
-      if (sortField === "year") return a.likelyDate > b.likelyDate ? -1 : 1;
+      if (e.currentTarget.name === "title") return a.title > b.title ? 1 : -1;
+      if (e.currentTarget.name === "year") return a.likelyDate > b.likelyDate ? -1 : 1;
     })
     setPlayResults(playsCopy);
   }
@@ -199,6 +199,17 @@ function App() {
                   <Header aboutOnClick={openModal} />
                   <div className="main-container">
                     <div className="sidebar">
+                    <div className="sort-container">
+                        <Space size={20}>
+                          <h2 className="inline-block">Sort by:</h2>
+                          <Button type="primary" name="title" size="large" onClick={sortPlays}>Title</Button>
+                          <Button type="primary" name="year" size="large" onClick={sortPlays}>Year</Button>
+                        </Space>
+                        {/* <button className="sort-title-button" name="title" onClick={handleSort}>Title</button>
+                        <button className="sort-year-button" name="year" onClick={handleSort}>Year</button> */}
+                        {/* <div className="legend-icon">❤️ - Add to Favorites</div><br/><br/>
+                        <div className="legend-icon">📙 - Text available</div><br/> */}
+                      </div>
                       <Collapse accordion defaultActiveKey={['1']}>
                         <Panel header="Filters" key="1">
                           <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
