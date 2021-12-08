@@ -14,8 +14,11 @@ import Modal from 'react-modal';
 import { Button, Layout, Space } from 'antd';
 import 'antd/dist/antd.css';
 import { Content } from 'antd/lib/layout/layout';
-import Sider from 'antd/lib/layout/Sider';
 import { Collapse } from 'antd';
+import { Drawer } from 'antd';
+import Sider from 'antd/lib/layout/Sider';
+import {Menu} from 'rc-menu/lib/Menu';
+import SubMenu from 'rc-menu/lib/SubMenu';
 
 Modal.setAppElement(document.querySelector("#root"));
 
@@ -166,6 +169,25 @@ function App() {
 
   const { Panel } = Collapse;
 
+  const [filterVisible, setFilterVisible] = useState(false);
+  const [favoritesVisible, setFavoritesVisible] = useState(false);
+
+  const showFilterDrawer = () => {
+    setFilterVisible(true);
+  }
+
+  const onFilterClose = () => {
+    setFilterVisible(false);
+  }
+
+  const showFavoritesDrawer = () => {
+    setFavoritesVisible(true);
+  }
+
+  const onFavoritesClose = () => {
+    setFavoritesVisible(false)
+  }
+
   /**
   * If still fetching from the API, display a loading animation. Otherwise, load the home browser.
   * Loading animation source: https://loading.io/css/
@@ -197,27 +219,23 @@ function App() {
                 {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
                 <div style={{ filter: mainStyle }}>
                   <Header aboutOnClick={openModal} />
-                  <div className="main-container">
+                  <div className="main-container">             
                     <div className="sidebar">
-                    {!showDetails ? <div className="sort-container">
+                      {!showDetails ? <div className="sort-container">
                         <Space size={20}>
                           <h2 className="inline-block">Sort by:</h2>
                           <Button type="primary" name="title" size="large" onClick={sortPlays}>Title</Button>
                           <Button type="primary" name="year" size="large" onClick={sortPlays}>Year</Button>
                         </Space>
-                        {/* <button className="sort-title-button" name="title" onClick={handleSort}>Title</button>
-                        <button className="sort-year-button" name="year" onClick={handleSort}>Year</button> */}
-                        {/* <div className="legend-icon">❤️ - Add to Favorites</div><br/><br/>
-                        <div className="legend-icon">📙 - Text available</div><br/> */}
                       </div> : null}
-                      <Collapse accordion defaultActiveKey={['1']}>
-                        {!showDetails ? <Panel header="Filters" key="1">
-                          <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
-                        </Panel> : null}
-                        <Panel header="Favourites" key="2">
-                          <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
-                        </Panel>
-                      </Collapse>
+                        <Collapse accordion defaultActiveKey={['1']}>
+                          {!showDetails ? <Panel header="Filters" key="1">
+                            <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
+                          </Panel> : null}
+                          <Panel header="Favourites" key="2">
+                            <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
+                          </Panel>
+                        </Collapse>
                     </div>
                     <Content>
                       {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs} /> : null}
