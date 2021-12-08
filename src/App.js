@@ -199,7 +199,7 @@ function App() {
                   <Header aboutOnClick={openModal} />
                   <div className="main-container">
                     <div className="sidebar">
-                    <div className="sort-container">
+                    {!showDetails ? <div className="sort-container">
                         <Space size={20}>
                           <h2 className="inline-block">Sort by:</h2>
                           <Button type="primary" name="title" size="large" onClick={sortPlays}>Title</Button>
@@ -209,11 +209,11 @@ function App() {
                         <button className="sort-year-button" name="year" onClick={handleSort}>Year</button> */}
                         {/* <div className="legend-icon">❤️ - Add to Favorites</div><br/><br/>
                         <div className="legend-icon">📙 - Text available</div><br/> */}
-                      </div>
+                      </div> : null}
                       <Collapse accordion defaultActiveKey={['1']}>
-                        <Panel header="Filters" key="1">
+                        {!showDetails ? <Panel header="Filters" key="1">
                           <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
-                        </Panel>
+                        </Panel> : null}
                         <Panel header="Favourites" key="2">
                           <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
                         </Panel>
