@@ -15,6 +15,7 @@ import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import { Content } from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
+import { Collapse } from 'antd';
 
 Modal.setAppElement(document.querySelector("#root"));
 
@@ -23,7 +24,7 @@ function App() {
   /**
   * Array of all plays, to be kept in local storage. This hook will always store the entire array of plays
   * for use in other methods. The array displayed in the play browser is the playResults hook further below.
-  */ 
+  */
   const [plays, setPlays] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -163,10 +164,12 @@ function App() {
     setCurrentPlay(id);
   }
 
+  const { Panel } = Collapse;
+
   /**
   * If still fetching from the API, display a loading animation. Otherwise, load the home browser.
   * Loading animation source: https://loading.io/css/
-  */ 
+  */
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -190,35 +193,35 @@ function App() {
         <Route path='/browse' exact render={() => {
           return (
             <Layout>
-            <div>
-              {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
-              <div style={{ filter: mainStyle }}>
-                <Header aboutOnClick={openModal} />
-                
-                <div className="main-container">
-                  {/* <Sider width="500"> */}
-                  <div className="sidebar">
-                    {!showDetails ? <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs}/> : null}
-                    {showFavs ? <button className="favorites-toggle-left" onClick={toggleDisplay}>←</button>: <button className="favorites-toggle-right" onClick={toggleDisplay}><span className="tooltip-text">Favorites</span>→</button>}
-                    <article className={showFavs ? "favorites-bar" : "favorites-bar-hidden"}>
-                      <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay}/>
-                    </article>
+              <div>
+                {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
+                <div style={{ filter: mainStyle }}>
+                  <Header aboutOnClick={openModal} />
+                  <div className="main-container">
+                    <div className="sidebar">
+                      <Collapse accordion defaultActiveKey={['1']}>
+                        <Panel header="Filters" key="1">
+                          <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
+                        </Panel>
+                        <Panel header="Favourites" key="2">
+                          <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
+                        </Panel>
+                      </Collapse>
+                    </div>
+                    <Content>
+                      {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs} /> : null}
+                      {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs} /> : null}
+                    </Content>
                   </div>
-                  {/* </Sider> */}
-                  {/* Tentatively removing sider as it doesn't actually appear to add much */}
-                  <Content>
-                    {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs}/> : null}
-                    {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs}/> : null}
-                  </Content>
+
                 </div>
-                
               </div>
-            </div>
             </Layout>
           );
         }} />
       </main>
     );
-}}
+  }
+}
 
 export default App;
