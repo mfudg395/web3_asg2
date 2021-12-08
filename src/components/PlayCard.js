@@ -23,10 +23,11 @@ const PlayCard = (props) => {
         //     </div>
             
         // </div>
-        <Card title={<span>{props.play.title}<br/>({props.play.likelyDate})</span>} size="small" extra={<Button type="primary" onClick={handleViewClick}>View</Button>}>
-            <img src={src} alt={props.play.title} className="play-card-image"/>
+        <Card title={<img src={src} alt={props.play.title} className="play-card-image"/>} size="small">
+            <p>{props.play.title} ({props.play.likelyDate})</p>
             <button className="favorite-button" onClick={handleFavoriteClick}>❤️</button>
             {props.play.filename != "" ? <span className="has-text-icon">📙</span> : null}
+            <Button type="primary" className="view-button" onClick={handleViewClick}>View</Button>
         </Card>
     )
 }
