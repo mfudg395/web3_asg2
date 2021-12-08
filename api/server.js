@@ -2,7 +2,6 @@ require('dotenv').config({ path: __dirname + '/.env' });
 const path = require('path'); // or else the express.static(path.join(...)) gets mad
 const express = require('express');
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('./handlers/helpers.js');
@@ -17,16 +16,10 @@ app.use('/static', express.static(path.join(__dirname, '../public')));
 
 
 // ejs views + sessions middle ware
-app.set('views', path.join(__dirname, './views'));
+app.set('views', path.join(__dirname, '../src'));
 app.set('view engine', 'ejs');
-app.use(cookieParser('oreos'));
-app.use(
-    session({
-        secret: process.env.SECRET,
-        resave: true,
-        saveUninitialized: true
-    })
-);
+app.engine('jsx', require('express-react-views').createEngine());
+const appPath = path.join(__dirname, "../src/build");
 
 
 // tell node to use json and HTTP header features
@@ -63,7 +56,9 @@ router.handleSinglePlay(app, Play);
 router.handleSingleUser(app, User);
 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-    res.render('home.ejs', { user: req.user });
+    app.set('view engine', "jsx");
+    app.use(express.static(appPath));
+    res.render("App.js");
 });
 
 // login and logout handlers
