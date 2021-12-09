@@ -15,12 +15,9 @@ const app = express();
 app.use('/static', express.static(path.join(__dirname, '../public')));
 
 
-// ejs views + sessions middle ware
+// Telling the app to use ejs as its view engine
 app.set('views', path.join(__dirname, '../src'));
 app.set('view engine', 'ejs');
-app.engine('jsx', require('express-react-views').createEngine());
-const appPath = path.join(__dirname, "../src/build");
-
 
 // tell node to use json and HTTP header features
 app.use(express.json());
@@ -56,9 +53,8 @@ router.handleSinglePlay(app, Play);
 router.handleSingleUser(app, User);
 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-    app.set('view engine', "jsx");
-    app.use(express.static(appPath));
-    res.render("App.js");
+    res.sendFile(path.join(__dirname, "../src/build/index.html"));
+    app.use("/", express.static(path.join(__dirname, "../src/build")));
 });
 
 // login and logout handlers
