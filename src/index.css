@@ -241,6 +241,7 @@ input.ant-input, select.ant-select-selector {
 .play-card-image {
   width: 100%;
 }
+
 .play-card-button-container {
   display: flex;
   justify-content: center;
@@ -288,7 +289,7 @@ input.ant-input, select.ant-select-selector {
 }
 
 .remove-favorite {
-  background-color: #e7e7e7;
+  background-color: white;
   border:none;
 }
 
