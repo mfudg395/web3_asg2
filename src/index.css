@@ -88,7 +88,7 @@ h2 {
 
 .main-container {
   display: grid;
-  grid-template-columns: 27% 73%;
+  grid-template-columns: 20% 80%;
   /* border: 1px solid black; */
 }
 
@@ -117,22 +117,11 @@ h2 {
   display: grid;
 }
 
-.filter {
-  display: grid;
-  grid-column: 2/3;
-  grid-template-columns: 1fr 1.5fr;
-  background-color: #e7e7e7;
-  margin: 5px;
-  padding: 10px;
-  border: 1px solid black;
-  height: 265px;
-}
-
 .filter-label {
   padding-top: 7.5px;
 }
 .filter-input {
-  height: 25px;
+  margin-right: -24px;
 }
 
 .HomeBrowserContainer input[type=text] {
