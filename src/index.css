@@ -120,8 +120,10 @@ h2 {
 .filter-label {
   padding-top: 7.5px;
 }
-.filter-input {
-  margin-right: -24px;
+
+input.ant-input, select.ant-select-selector {
+  width: 140%;
+  margin-left: 2px;
 }
 
 .HomeBrowserContainer input[type=text] {

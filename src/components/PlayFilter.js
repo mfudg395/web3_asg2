@@ -60,16 +60,16 @@ const PlayFilter = (props) => {
                 layout="horizontal"
             >
                 <Form.Item label="Title">
-                    <Input name="title-filter" onChange={handleChange} class="filter-input" />
+                    <Input name="title-filter" onChange={handleChange} />
                 </Form.Item>
                 <Form.Item label="Before">
-                    <Input name="before-year-filter" onChange={handleChange} className="filter-input" />
+                    <Input name="before-year-filter" onChange={handleChange}  />
                 </Form.Item>
                 <Form.Item label="After">
-                    <Input name="after-year-filter" onChange={handleChange} className="filter-input" />
+                    <Input name="after-year-filter" onChange={handleChange} />
                 </Form.Item>
                 <Form.Item label="Genre">
-                    <Select name="genre-filter" defaultValue="" className="filter-input" onChange={(value) => {
+                    <Select name="genre-filter" defaultValue="" onChange={(value) => {
                         updateFilterGenre(value);
                     }}>
                         <Select.Option value=""></Select.Option>
