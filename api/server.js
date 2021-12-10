@@ -61,8 +61,7 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
 
 // login and logout handlers
 app.get('/login', (req, res) => {
-    // res.render('login.ejs', { message: req.flash('error') });
-    console.log("You need to be logged in to see this content");
+    res.render('login.ejs', { message: req.flash('error') });
 });
 
 app.post('/login', async (req, resp, next) => {

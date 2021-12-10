@@ -12,7 +12,7 @@ const FavoriteItem = (props) => {
 
     return (
         <span>
-            <p className={ props.showFavs ? "favorite-item" : "favorite-item-hidden"}>
+            <p className="favorite-item">
                 <button className="remove-favorite" onClick={handleClick}>❌</button>
                 <span onClick={handleViewClick}>{props.play.title} ({props.play.likelyDate})</span>
             </p>

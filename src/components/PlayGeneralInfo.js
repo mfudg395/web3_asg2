@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import React from 'react';
 
 const PlayGeneralInfo = (props) => {
@@ -14,7 +15,8 @@ const PlayGeneralInfo = (props) => {
             <img src={src} alt={props.play.title} />
             <h2>{props.play.title}</h2>
             <p>{props.play.synopsis}</p>
-            <button className="details-close-button" onClick={handleCloseClick}>Close</button><button className="details-favorite-button" onClick={handleFavoriteClick}>❤️</button>
+            <Button type="primary" size="large" onClick={handleCloseClick}>Close</Button><button className="details-favorite-button" onClick={handleFavoriteClick}>❤️</button>
+            {/* <button className="details-close-button" onClick={handleCloseClick}>Close</button><button className="details-favorite-button" onClick={handleFavoriteClick}>❤️</button> */}
         </div>
     )
 }

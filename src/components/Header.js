@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../assets/images/logo.png";
 import { Link } from 'react-router-dom'; 
+import { Button } from "antd";
 
 const Header = (props) => {
 
@@ -15,7 +16,8 @@ const Header = (props) => {
                 <Link to="/home">
                     <img src={Logo} title="Book Logo" alt="Book Logo" className="site-logo" />
                 </Link>
-                <button className="about-button" onClick={handleClick}>About</button>
+                <Button className="about-button" type="default" size="large" onClick={handleClick}>About</Button>
+                {/* <button className="about-button" onClick={handleClick}>About</button> */}
             </div>
         </header>
     );
