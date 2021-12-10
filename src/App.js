@@ -11,6 +11,14 @@ import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import * as cloneDeep from 'lodash/cloneDeep';
 import Modal from 'react-modal';
+import { Button, Layout, Space } from 'antd';
+import 'antd/dist/antd.css';
+import { Content } from 'antd/lib/layout/layout';
+import { Collapse } from 'antd';
+import { Drawer } from 'antd';
+import Sider from 'antd/lib/layout/Sider';
+import {Menu} from 'rc-menu/lib/Menu';
+import SubMenu from 'rc-menu/lib/SubMenu';
 
 Modal.setAppElement(document.querySelector("#root"));
 
@@ -19,7 +27,7 @@ function App() {
   /**
   * Array of all plays, to be kept in local storage. This hook will always store the entire array of plays
   * for use in other methods. The array displayed in the play browser is the playResults hook further below.
-  */ 
+  */
   const [plays, setPlays] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -68,11 +76,11 @@ function App() {
   * Sort plays by a given field as a String - either by title or by year. The resulting plays
   * is then updated with the sorted plays
   */
-  const sortPlays = (sortField) => {
+  const sortPlays = (e) => {
     const playsCopy = cloneDeep(playResults);
     playsCopy.sort(function (a, b) {
-      if (sortField === "title") return a.title > b.title ? 1 : -1;
-      if (sortField === "year") return a.likelyDate > b.likelyDate ? -1 : 1;
+      if (e.currentTarget.name === "title") return a.title > b.title ? 1 : -1;
+      if (e.currentTarget.name === "year") return a.likelyDate > b.likelyDate ? -1 : 1;
     })
     setPlayResults(playsCopy);
   }
@@ -159,10 +167,31 @@ function App() {
     setCurrentPlay(id);
   }
 
+  const { Panel } = Collapse;
+
+  const [filterVisible, setFilterVisible] = useState(false);
+  const [favoritesVisible, setFavoritesVisible] = useState(false);
+
+  const showFilterDrawer = () => {
+    setFilterVisible(true);
+  }
+
+  const onFilterClose = () => {
+    setFilterVisible(false);
+  }
+
+  const showFavoritesDrawer = () => {
+    setFavoritesVisible(true);
+  }
+
+  const onFavoritesClose = () => {
+    setFavoritesVisible(false)
+  }
+
   /**
   * If still fetching from the API, display a loading animation. Otherwise, load the home browser.
   * Loading animation source: https://loading.io/css/
-  */ 
+  */
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -185,27 +214,43 @@ function App() {
         }} />
         <Route path='/browse' exact render={() => {
           return (
-            <div>
-              {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
-              <div style={{ filter: mainStyle }}>
-                <Header aboutOnClick={openModal} />
-                <div className="main-container">
-                  <div>
-                    {!showDetails ? <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs}/> : null}
-                    {showFavs ? <button className="favorites-toggle-left" onClick={toggleDisplay}>←</button>: <button className="favorites-toggle-right" onClick={toggleDisplay}><span className="tooltip-text">Favorites</span>→</button>}
-                    <article className={showFavs ? "favorites-bar" : "favorites-bar-hidden"}>
-                      <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay}/>
-                    </article>
+            <Layout>
+              <div>
+                {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
+                <div style={{ filter: mainStyle }}>
+                  <Header aboutOnClick={openModal} />
+                  <div className="main-container">             
+                    <div className="sidebar">
+                      {!showDetails ? <div className="sort-container">
+                        <Space size={20}>
+                          <h2 className="inline-block">Sort by:</h2>
+                          <Button type="primary" name="title" size="large" onClick={sortPlays}>Title</Button>
+                          <Button type="primary" name="year" size="large" onClick={sortPlays}>Year</Button>
+                        </Space>
+                      </div> : null}
+                        <Collapse accordion defaultActiveKey={['1']}>
+                          {!showDetails ? <Panel header="Filters" key="1">
+                            <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
+                          </Panel> : null}
+                          <Panel header="Favourites" key="2">
+                            <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
+                          </Panel>
+                        </Collapse>
+                    </div>
+                    <Content>
+                      {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs} /> : null}
+                      {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs} /> : null}
+                    </Content>
                   </div>
-                  {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs}/> : null}
-                  {showDetails ? <PlayDetails play={plays.find(p => p.id === currentPlay)} viewPlay={viewPlay} favoritePlay={addFavorite} showFavs={showFavs}/> : null}
+
                 </div>
               </div>
-            </div>
+            </Layout>
           );
         }} />
       </main>
     );
-}}
+  }
+}
 
 export default App;
