@@ -18,10 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // use the route handlers
-const router = require('./handlers/router.js');
-router.handleAllPlays(app, Play);
-router.handleSinglePlay(app, Play);
-router.handleSingleUser(app, User);
+// const router = require('./handlers/router.js');
+// router.handleAllPlays(app, Play);
+// router.handleSinglePlay(app, Play);
+// router.handleSingleUser(app, User);
 /* --- middle ware section --- */
 
 // not sure if we need this but ¯\_(ツ)_/¯
@@ -84,6 +84,37 @@ app.get('/logout', (req, resp) => {
 // app.use(function (req, res, next) {
 //     res.status(404).send("Sorry can't find that!")
 // });
+
+app.get('/api/list', helper.ensureAuthenticated, (req, resp) => {
+    Play.find({}, '-playText', (err, data) => {
+        if (err) {
+            resp.json({ message: 'Unable to connect to plays' });
+        } else {
+            resp.json(data);
+        }
+    });
+});
+
+app.get('/api/list/:id', helper.ensureAuthenticated, (req, resp) => {
+    Play.find({ id: req.params.id }, (err, data) => { // must be exact match
+        if (err) {
+            resp.json({ message: 'Play not found' });
+        } else {
+            resp.json(data);
+        }
+    });
+});
+
+
+app.get('/api/user/:id', helper.ensureAuthenticated, (req, resp) => {
+    User.find({ id: req.params.id }, 'id details picture membership email', (err, data) => {
+        if (err) {
+            resp.json({ message: 'User not found'});
+        } else {
+            resp.json(data);
+        }
+    })
+});
 
 // create connection to database
 const port = process.env.PORT;
