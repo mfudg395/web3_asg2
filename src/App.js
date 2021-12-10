@@ -5,7 +5,6 @@ import PlayFilter from './components/PlayFilter.js';
 import FavoriteBar from './components/FavoriteBar.js';
 import PlayDetails from './components/PlayDetails';
 import Header from './components/Header.js';
-import About from './components/About.js';
 
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
@@ -15,10 +14,6 @@ import { Button, Layout, Space } from 'antd';
 import 'antd/dist/antd.css';
 import { Content } from 'antd/lib/layout/layout';
 import { Collapse } from 'antd';
-import { Drawer } from 'antd';
-import Sider from 'antd/lib/layout/Sider';
-import {Menu} from 'rc-menu/lib/Menu';
-import SubMenu from 'rc-menu/lib/SubMenu';
 
 Modal.setAppElement(document.querySelector("#root"));
 
@@ -140,20 +135,6 @@ function App() {
     setPlayResults(playsCopy);
   }
 
-  // Hooks to be used in About menu
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [mainStyle, changeMainStyle] = React.useState("");
-
-  function openModal() {
-    setIsOpen(true);
-    changeMainStyle("blur(8px)");
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-    changeMainStyle("none");
-  }
-
   // Boolean for whether or not to display play details pane
   const [showDetails, setShowDetails] = useState(false);
 
@@ -168,25 +149,6 @@ function App() {
   }
 
   const { Panel } = Collapse;
-
-  const [filterVisible, setFilterVisible] = useState(false);
-  const [favoritesVisible, setFavoritesVisible] = useState(false);
-
-  const showFilterDrawer = () => {
-    setFilterVisible(true);
-  }
-
-  const onFilterClose = () => {
-    setFilterVisible(false);
-  }
-
-  const showFavoritesDrawer = () => {
-    setFavoritesVisible(true);
-  }
-
-  const onFavoritesClose = () => {
-    setFavoritesVisible(false)
-  }
 
   /**
   * If still fetching from the API, display a loading animation. Otherwise, load the home browser.
@@ -216,10 +178,9 @@ function App() {
           return (
             <Layout>
               <div>
-                {modalIsOpen ? <About closeModal={closeModal}><p>Modal</p> </About> : null}
-                <div style={{ filter: mainStyle }}>
-                  <Header aboutOnClick={openModal} />
-                  <div className="main-container">             
+                <div>
+                  <Header />
+                  <div className="main-container">
                     <div className="sidebar">
                       {!showDetails ? <div className="sort-container">
                         <Space size={20}>
@@ -228,14 +189,14 @@ function App() {
                           <Button type="primary" name="year" size="large" onClick={sortPlays}>Year</Button>
                         </Space>
                       </div> : null}
-                        <Collapse accordion defaultActiveKey={['1']}>
-                          {!showDetails ? <Panel header="Filters" key="1">
-                            <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
-                          </Panel> : null}
-                          <Panel header="Favourites" key="2">
-                            <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
-                          </Panel>
-                        </Collapse>
+                      <Collapse accordion defaultActiveKey={['1']}>
+                        {!showDetails ? <Panel header="Filters" key="1">
+                          <PlayFilter plays={playResults} filterPlays={filterPlays} favState={showFavs} />
+                        </Panel> : null}
+                        <Panel header="Favourites" key="2">
+                          <FavoriteBar favPlays={favoritePlays} removePlay={removeFavorite} toggleDisplay={toggleDisplay} showFavs={showFavs} viewPlay={viewPlay} />
+                        </Panel>
+                      </Collapse>
                     </div>
                     <Content>
                       {!showDetails ? <PlayBrowser plays={playResults} sortPlays={sortPlays} favoritePlay={addFavorite} viewPlay={viewPlay} favState={showFavs} /> : null}

@@ -39,7 +39,7 @@ const PlayDetails = (props) => {
     const getData = async () => {
       if (!localStorage.getItem(props.play.id)) { // if not in localstorage
         if (props.play.filename != "") { // if play has characters & text
-          const url = `https://www.randyconnolly.com//funwebdev/3rd/api/shakespeare/play.php?name=${props.play.id}`;
+          const url = `localhost:8080/api/list/${props.play.id}`;
           const response = await fetch(url);
           const data = await response.json();
           setPlayInfo(data);

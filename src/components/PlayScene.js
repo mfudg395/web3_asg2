@@ -33,5 +33,4 @@ const PlayScene = (props) => {
     }
 }
 
-
 export default PlayScene;

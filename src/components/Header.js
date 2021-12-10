@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/images/logo.png";
-import { Link } from 'react-router-dom'; 
-import { Button } from "antd";
+import { Link } from 'react-router-dom';
+import { Modal, Button } from "antd";
+
+import About from "./About"
 
 const Header = (props) => {
 
-    const handleClick = () => {
-        props.aboutOnClick();
+    const [visible, setVisible] = useState(false);
+
+    const showModal = () => {
+        setVisible(true);
+    }
+
+    const onClose = () => {
+        setVisible(false);
     }
 
     return (
@@ -16,8 +24,17 @@ const Header = (props) => {
                 <Link to="/home">
                     <img src={Logo} title="Book Logo" alt="Book Logo" className="site-logo" />
                 </Link>
-                <Button className="about-button" type="default" size="large" onClick={handleClick}>About</Button>
-                {/* <button className="about-button" onClick={handleClick}>About</button> */}
+                <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>
+                <Modal
+                    title="About"
+                    footer={null}
+                    centered
+                    maskClosable="true"
+                    width="75rem"
+                    onCancel={onClose}
+                    visible={visible}>
+                    <About />
+                </Modal>
             </div>
         </header>
     );

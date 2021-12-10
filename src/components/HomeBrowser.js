@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
  * upon first loading the website. 
  */
 const HomeBrowser = function (props) {
-    
+
     const [input, setInput] = useState("");
 
     const handleSearch = () => props.searchPlays(input);
@@ -25,7 +25,6 @@ const HomeBrowser = function (props) {
                 exit={false}
                 in={true}>
                 <div className="HomeBrowserContainer">
-
                     <label htmlFor="title-input" id="title-label">Title</label>
                     <input type="text" id="title-input" placeholder="Search plays" onInput={e => setInput(e.target.value)}></input>
                     <div className="line-break"></div>

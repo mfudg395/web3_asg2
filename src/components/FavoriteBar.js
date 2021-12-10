@@ -5,8 +5,8 @@ const FavoriteBar = (props) => {
 
     return (
         <article>
-             <h2 className={props.showFavs ? "favorites-header" : "favorites-header-hidden"}>Favorites❤️</h2>
-            {props.favPlays.length === 0 ? <p>No favourite plays... yet</p> : props.favPlays.map(p => <FavoriteItem play={p} key={p.id} removePlay={props.removePlay} viewPlay={props.viewPlay} showFavs={props.showFavs}/>)}
+            <h2 className={props.showFavs ? "favorites-header" : "favorites-header-hidden"}>Favorites❤️</h2>
+            {props.favPlays.length === 0 ? <p>No favourite plays... yet</p> : props.favPlays.map(p => <FavoriteItem play={p} key={p.id} removePlay={props.removePlay} viewPlay={props.viewPlay} showFavs={props.showFavs} />)}
         </article>
     );
 }
