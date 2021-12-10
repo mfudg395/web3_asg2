@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 // router.handleAllPlays(app, Play);
 // router.handleSinglePlay(app, Play);
 // router.handleSingleUser(app, User);
+
 /* --- middle ware section --- */
 
 // not sure if we need this but ¯\_(ツ)_/¯
