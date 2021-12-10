@@ -13,6 +13,8 @@ const Play = require('./models/Play.js');
 const User = require('./models/User.js');
 require('./handlers/auth.js');
 
+let currentUser;
+
 // tell node to use json and HTTP header features
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -56,8 +58,19 @@ app.use(flash());
 app.get('/', helper.ensureAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));
     app.use("/", express.static(path.join(__dirname, "../build")));
-    console.log(__dirname + "../build/index.html");
+    console.log(typeof req.user);
+    console.log(req.user.id);
 });
+
+app.get("/currentUser", function(req, res) {
+    User.find({id: req.user.id}, 'id', (err, data) => {
+        if (err) {
+            res.send({message: "User not found"});
+        } else {
+            res.send(data);
+        }
+    })
+})
 
 // login and logout handlers
 app.get('/login', (req, res) => {
