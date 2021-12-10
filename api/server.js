@@ -1,28 +1,38 @@
 require('dotenv').config({ path: __dirname + '/.env' });
 const path = require('path'); // or else the express.static(path.join(...)) gets mad
 const express = require('express');
+const app = express();
 const session = require('express-session');
 const flash = require('express-flash');
 const passport = require('passport');
 const helper = require('./handlers/helpers.js');
-
-const app = express();
-
-/* --- middle ware section --- */
-
-// not sure if we need this but ¯\_(ツ)_/¯
-// serves up static files from the public folder. 
-app.use('/static', express.static(path.join(__dirname, '../public')));
-
-
-// Telling the app to use ejs as its view engine
-app.set('views', path.join(__dirname, '../src'));
-app.set('view engine', 'ejs');
+const cookieParser = require("cookie-parser");
+require('./handlers/dataConnector.js').connect();
+// get our data model
+const Play = require('./models/Play.js');
+const User = require('./models/User.js');
+require('./handlers/auth.js');
 
 // tell node to use json and HTTP header features
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// use the route handlers
+const router = require('./handlers/router.js');
+router.handleAllPlays(app, Play);
+router.handleSinglePlay(app, Play);
+router.handleSingleUser(app, User);
+/* --- middle ware section --- */
+
+// not sure if we need this but ¯\_(ツ)_/¯
+// serves up static files from the public folder. 
+// app.use('/static', express.static(path.join(__dirname, '../public')));
+
+
+// Telling the app to use ejs as its view engine
+app.set('views', path.join(__dirname, './views'));
+app.set('view engine', 'ejs');
+app.use(cookieParser("oreo"));
 // Express session
 app.use(
     session({
@@ -40,21 +50,13 @@ app.use(passport.session());
 app.use(flash());
 
 // set up the passport authentication
-require('./handlers/auth.js');
 
-// get our data model
-const Play = require('./models/Play.js');
-const User = require('./models/User.js');
 
-// use the route handlers
-const router = require('./handlers/router.js');
-router.handleAllPlays(app, Play);
-router.handleSinglePlay(app, Play);
-router.handleSingleUser(app, User);
 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../src/build/index.html"));
-    app.use("/", express.static(path.join(__dirname, "../src/build")));
+    res.sendFile(path.join(__dirname, "../build/index.html"));
+    app.use("/", express.static(path.join(__dirname, "../build")));
+    console.log(__dirname + "../build/index.html");
 });
 
 // login and logout handlers
@@ -79,13 +81,12 @@ app.get('/logout', (req, resp) => {
     resp.render('login', { message: req.flash('info') });
 });
 
-// customize the 404 error with our own middleware function
-app.use(function (req, res, next) {
-    res.status(404).send("Sorry can't find that!")
-});
+// // customize the 404 error with our own middleware function
+// app.use(function (req, res, next) {
+//     res.status(404).send("Sorry can't find that!")
+// });
 
 // create connection to database
-require('./handlers/dataConnector.js').connect();
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log("Server running at port = " + port);
