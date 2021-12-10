@@ -2,21 +2,29 @@ import React, { useState } from "react";
 import Logo from "../assets/images/logo.png";
 import { Link } from 'react-router-dom'; 
 import { Button, Drawer } from "antd";
+import { Modal } from "antd";
+
+import About from "./About"
 
 const Header = (props) => {
 
-    const [visible, setVisible] = useState(false);
+    const [aboutVisible, setAboutVisible] = useState(false);
+    const [profileVisible, setProfileVisible] = useState(false);
 
-    const handleClick = () => {
-        props.aboutOnClick();
+    const showModal = () => {
+        setAboutVisible(true);
+    }
+
+    const onClose = () => {
+        setAboutVisible(false);
     }
 
     function showDrawer() {
-        setVisible(true);
+        setProfileVisible(true);
     }
 
     function closeDrawer() {
-        setVisible(false);
+        setProfileVisible(false);
     }
 
     return (
@@ -27,11 +35,20 @@ const Header = (props) => {
                     <img src={Logo} title="Book Logo" alt="Book Logo" className="site-logo" />
                 </Link>
                 <Button className="profile-button" type="default" size="large" onClick={showDrawer}>Profile</Button>
-                <Button className="about-button" type="default" size="large" onClick={handleClick}>About</Button>
-                {/* <button className="about-button" onClick={handleClick}>About</button> */}
-                <Drawer title="Profile" placement="top" closable={true} visible={visible} onClose={closeDrawer}>
+                <Drawer title="Profile" placement="top" closable={true} visible={profileVisible} onClose={closeDrawer}>
 
                 </Drawer>
+                <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>
+                <Modal
+                    title="About"
+                    footer={null}
+                    centered
+                    maskClosable="true"
+                    width="75rem"
+                    onCancel={onClose}
+                    visible={aboutVisible}>
+                    <About />
+                </Modal>
             </div>
         </header>
     );

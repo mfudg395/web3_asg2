@@ -25,20 +25,18 @@ const PlayAct = (props) => {
             return (
                 <div className="details-text">
                     <h2>{props.act.name}</h2>
-                    <PlayScene scene={props.act.scenes[2]}speaker={props.textSelection.char} searchWords={props.searchWords} />
+                    <PlayScene scene={props.act.scenes[2]} speaker={props.textSelection.char} searchWords={props.searchWords} />
                 </div>
             )
         } else {
             return (
                 <div className="details-text">
                     <h2>{props.act.name}</h2>
-                    <PlayScene scene={props.act.scenes[0]}speaker={props.textSelection.char} searchWords={props.searchWords} />
+                    <PlayScene scene={props.act.scenes[0]} speaker={props.textSelection.char} searchWords={props.searchWords} />
                 </div>
             )
         }
-        
     }
-    
 }
 
 export default PlayAct;
