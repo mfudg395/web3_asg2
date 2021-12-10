@@ -6,7 +6,7 @@ import PlayList from './PlayList.js';
 const PlayBrowser = (props) => {
     return (
         <div className={props.favState ? "playBrowser" : "playBrowser playBrowser-fav-hidden"}>
-            {!isEmpty(props.plays) ? <PlayList plays={props.plays} sortPlays={props.sortPlays} favoritePlay={props.favoritePlay} viewPlay={props.viewPlay} favState={props.favState}/> : <div className="grid-item plays-list black-border">No plays found.</div>}
+            {!isEmpty(props.plays) ? <PlayList plays={props.plays} sortPlays={props.sortPlays} favoritePlay={props.favoritePlay} viewPlay={props.viewPlay} favState={props.favState} /> : <div className="grid-item plays-list black-border">No plays found.</div>}
         </div>
     )
 }

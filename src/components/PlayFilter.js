@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     Form,
     Input,
@@ -63,7 +63,7 @@ const PlayFilter = (props) => {
                     <Input name="title-filter" onChange={handleChange} />
                 </Form.Item>
                 <Form.Item label="Before">
-                    <Input name="before-year-filter" onChange={handleChange}  />
+                    <Input name="before-year-filter" onChange={handleChange} />
                 </Form.Item>
                 <Form.Item label="After">
                     <Input name="after-year-filter" onChange={handleChange} />
@@ -82,49 +82,6 @@ const PlayFilter = (props) => {
                     <Button type="primary" class="filter-button" onClick={processFilter}>Filter</Button><Button class="clear-filter-button" onClick={clearFilter}>Clear</Button>
                 </Form.Item>
             </Form>
-
-
-
-
-            {/* <h2>Filters</h2>
-            <br/>
-            <label htmlFor="title-filter" className="filter-label">Title:</label>
-            {/* <input type="text" name="title-filter" className="filter-input" onChange={handleChange}></input> */}
-            {/* <Input name="title-filter" size="small" onChange={handleChange}/> */}
-
-            {/* <label htmlFor="before-year-filter" className="filter-label">Before year:</label> */}
-            {/* <input type="text" name="before-year-filter" className="filter-input" onChange={handleChange}></input> */}
-            {/* <Input name="before-year-filter" size="small" onChange={handleChange}/> */}
-
-            {/* <label htmlFor="after-year-filter" className="filter-label">After year:</label> */}
-            {/* <input type="text" name="after-year-filter" className="filter-input" onChange={handleChange}></input> */}
-            {/* <Input name="after-year-filter" size="small" onChange={handleChange}/> */}
-
-            {/* <label htmlFor="genre-filter" className="filter-label">Genre:</label> */}
-            {/* <select name="genre-filter" defaultValue="none" className="filter-input" onChange={handleChange}>
-                <option value=""></option>
-                <option value="comedy">Comedy</option>
-                <option value="tragedy">Tragedy</option>
-                <option value="history">History</option>
-            </select> */}
-            {/**The only way to access the Select value with ant-design is to pass it into the onChange event,
-             * which is why it has a different onChange implementation than the other inputs.
-             */}
-            {/* <Select name="genre-filter" defaultValue="" onChange={(value) => { */}
-            {/* updateFilterGenre(value); */}
-            {/* }}> */}
-            {/* <Option value=""></Option>
-                <Option value="comedy">Comedy</Option>
-                <Option value="tragedy">Tragedy</Option> */}
-            {/* <Option value="history">History</Option>
-            </Select> */}
-
-            {/* <button className="filter-button" onClick={processFilter}>Filter</button>
-            <button className="clear-filter-button" onClick={clearFilter}>Clear</button> */}
-            {/* <Space align="end">
-                <Button type="primary" size="large" className="filter-button" onClick={processFilter}>Filter</Button>
-                <Button type="primary" size="large" className="clear-filter-button" onClick={clearFilter}>Clear</Button>
-            </Space> */}
         </div>
     )
 }

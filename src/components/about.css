@@ -1,17 +1,8 @@
-.modal-main {
-    position:fixed;
-    background: #f8ddf8;
-    width: 80%;
-    height: 90%;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    border: 1px solid #7E5A9B;
-    border-width: 5px;
-    z-index: 10;
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
-  .modal-main h1 {
-    font-size: 30px;
-    text-align: center;
-  }
+.grid-header {
+  grid-column-start: span 2;
+}
