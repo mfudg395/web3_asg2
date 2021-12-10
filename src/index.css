@@ -48,7 +48,7 @@ button:hover {
   margin-left: 10px;
 }
 
-.about-button {
+.about-button, .profile-button {
   height: 40px;
   margin-left: auto;
   margin-right: 50px;
