@@ -27,6 +27,8 @@ router.handleSingleUser(app, User);
 // not sure if we need this but ¯\_(ツ)_/¯
 // serves up static files from the public folder. 
 // app.use('/static', express.static(path.join(__dirname, '../public')));
+const publicPath = path.join(__dirname, 'build');
+app.use(express.static(publicPath));
 
 
 // Telling the app to use ejs as its view engine

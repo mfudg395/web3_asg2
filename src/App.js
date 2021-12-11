@@ -36,7 +36,7 @@ function App() {
           setPlays(data);
           setIsLoading(false);
         } else {
-          const url = "https://www.randyconnolly.com//funwebdev/3rd/api/shakespeare/list.php";
+          const url = "api/list"
           const response = await fetch(url);
           const data = await response.json();
           data.sort((a, b) => a.title > b.title ? 1 : -1);
