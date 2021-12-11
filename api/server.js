@@ -50,9 +50,6 @@ app.use(passport.session());
 // use express flash, which will be used for passing messages
 app.use(flash());
 
-// set up the passport authentication
-
-
 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));
