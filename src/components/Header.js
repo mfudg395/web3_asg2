@@ -74,7 +74,9 @@ const Header = (props) => {
                         visible={aboutVisible}>
                         <About />
                     </Modal>
-                    <Button className="logout-button" type="default" size="large">Logout</Button>
+                    <Button className="logout-button" type="default" size="large">
+                        <a href="/logout">Logout</a>
+                    </Button>
                 </div>
             </div>
         </header>
