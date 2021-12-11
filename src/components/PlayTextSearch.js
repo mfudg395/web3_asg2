@@ -35,19 +35,19 @@ const PlayTextSearch = (props) => {
             <h2>{props.play.title}</h2>
             <label for="act">Act</label>
             <select name="act" id="act" className="details-search-option" onChange={handleOnChange}>
-                {props.playInfo.acts.map(act => <option value={act.name}>{act.name}</option>)}
+                {props.playInfo.playText.acts.map(act => <option value={act.name}>{act.name}</option>)}
             </select>
             <br />
             <label for="scene">Scene</label>
             <select name="scene" id="scene" className="details-search-option" onChange={handleOnChange}>
-                {props.playInfo.acts.find(act => act.name === props.textSelection.act).scenes.map(s => <option value={s.name}>{s.name}</option>)}
+                {props.playInfo.playText.acts.find(act => act.name === props.textSelection.act).scenes.map(s => <option value={s.name}>{s.name}</option>)}
             </select>
             <br />
             <div>
                 <label for="char">Character</label>
                 <select name="char" id="char" className="details-search-option" onChange={handleOnChange}>
                     <option value="allPlayers">ALL PLAYERS</option>
-                    {props.playInfo.persona.map(p => <option value={p.player}>{p.player}</option>)}
+                    {props.playInfo.playText.persona.map(p => <option value={p.player}>{p.player}</option>)}
                 </select>
                 <br />
                 <label for="highlight">Highlight text</label>

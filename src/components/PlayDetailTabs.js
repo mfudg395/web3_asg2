@@ -16,10 +16,10 @@ const PlayDetailTabs = (props) => {
                         <p><strong>Description:</strong> {props.play.desc}</p>
                     </div>
                     <div label="Characters">
-                        {props.playInfo.persona.map(c => <PlayCharacter character={c.player} desc={c.desc} key={c.player} />)}
+                        {props.playInfo.playText.persona.map(c => <PlayCharacter character={c.player} desc={c.desc} key={c.player} />)}
                     </div>
                     <div label="Text">
-                        {<PlayText text={props.playInfo} textSelection={props.textSelection} searchWords={props.searchWords} />}
+                        {<PlayText text={props.playInfo.playText} textSelection={props.textSelection} searchWords={props.searchWords} />}
                     </div>
                 </Tabs>
                 : // to only display details tab

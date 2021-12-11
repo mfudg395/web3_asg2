@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // not sure if we need this but ¯\_(ツ)_/¯
 // serves up static files from the public folder. 
-// app.use('/static', express.static(path.join(__dirname, '../public')));
+app.use('/static', express.static(path.join(__dirname, 'build')));
 
 
 // Telling the app to use ejs as its view engine

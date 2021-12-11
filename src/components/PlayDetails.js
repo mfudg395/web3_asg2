@@ -39,24 +39,24 @@ const PlayDetails = (props) => {
     const getData = async () => {
       if (!localStorage.getItem(props.play.id)) { // if not in localstorage
         if (props.play.filename != "") { // if play has characters & text
-          const url = `localhost:8080/api/list/${props.play.id}`;
+          const url = `/api/list/${props.play.id}`;
           const response = await fetch(url);
           const data = await response.json();
-          setPlayInfo(data);
+          setPlayInfo(data[0]);
           setTextSelection({
-            act: data.acts[0].name,
-            scene: data.acts[0].scenes[0].name,
+            act: data[0].playText.acts[0].name,
+            scene: data[0].playText.acts[0].scenes[0].name,
             char: "allPlayers",
           });
           setHasPlayInfo(true);
-          localStorage.setItem(props.play.id, JSON.stringify(data));
+          localStorage.setItem(props.play.id, JSON.stringify(data[0]));
         }
       } else {
         const data = JSON.parse(localStorage.getItem(props.play.id));
         setPlayInfo(data);
         setTextSelection({
-          act: data.acts[0].name,
-          scene: data.acts[0].scenes[0].name,
+          act: data.playText.acts[0].name,
+          scene: data.playText.acts[0].scenes[0].name,
           char: "allPlayers",
         });
         setHasPlayInfo(true);
