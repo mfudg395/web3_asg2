@@ -1,4 +1,4 @@
-const helper = require('./helpers.js');
+
 
 // Returns all plays (DO NOT INCLUDE PLAYTEXT)
 const handleAllPlays = (app, Play) => {
@@ -36,7 +36,7 @@ const handleSingleUser = (app, User) => {
                     resp.json(data);
                 }
             })
-        })
+        });
 }
 
 module.exports = {
