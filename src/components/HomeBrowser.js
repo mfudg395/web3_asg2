@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../assets/css/HomeBrowser.css';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { Button } from 'antd';
 
 /**
  * The HomeBrowser is the box on the homepage that allows the user to search for plays
@@ -29,8 +30,8 @@ const HomeBrowser = function (props) {
                     <input type="text" id="title-input" placeholder="Search plays" onInput={e => setInput(e.target.value)}></input>
                     <div className="line-break"></div>
                     <Link to='/browse'>
-                        <button onClick={handleSearch} id="matching-plays-button" className="search-button">Search Matching Plays</button>
-                        <button onClick={handleSearchAll} id="all-plays-button" className="search-button" >Search All Plays</button>
+                        <Button onClick={handleSearch} id="matching-plays-button" size="large" className="search-button">Search Matching Plays</Button>
+                        <Button onClick={handleSearchAll} id="all-plays-button" size="large" className="search-button" >Search All Plays</Button>
                     </Link>
                     <div className="line-break"></div>
                     {/* https://unsplash.com/photos/YLSwjSy7stw */}
