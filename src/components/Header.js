@@ -40,9 +40,7 @@ const Header = (props) => {
                 const apiUrl = "api/user/" + id;
                 const apiResponse = await fetch(apiUrl);
                 let userData = await apiResponse.json();
-                console.log(userData[0]);
                 setCurrentProfile(userData[0]);
-                console.log(currentProfile);
             } catch (err) {
                 console.log(err);
             }
