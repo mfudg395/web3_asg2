@@ -25,9 +25,6 @@ const Header = (props) => {
                     <img src={Logo} title="Book Logo" alt="Book Logo" className="site-logo" />
                 </Link>
                 <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>
-                <Button type="default" size="large">
-                    <a href="/logout">Logout</a>
-                </Button>
                 <Modal
                     title="About"
                     footer={null}
