@@ -32,12 +32,12 @@ const Header = (props) => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const url = "http://localhost:8080/currentUser";
+                const url = "currentUser";
                 const response = await fetch(url);
                 let id = await response.json();
                 id = id[0].id;
 
-                const apiUrl = "http://localhost:8080/api/user/" + id;
+                const apiUrl = "api/user/" + id;
                 const apiResponse = await fetch(apiUrl);
                 let userData = await apiResponse.json();
                 console.log(userData[0]);
