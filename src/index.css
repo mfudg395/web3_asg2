@@ -37,6 +37,7 @@ button:hover {
 }
 .flex-container {
   display: flex;
+  justify-content: space-between;
 }
 
 .flex-vertical-center {
@@ -48,21 +49,26 @@ button:hover {
   margin-left: 10px;
 }
 
-.about-button, .profile-button {
+.about-button, .profile-button, .logout-button {
+  /* transform: translateY(70%);
+  margin-right: 50px; */
+  width: 150px;
   height: 40px;
-  margin-left: auto;
   margin-right: 50px;
+  /* height: 40px;
+  margin-left: auto;
+  margin-right: 50px; */
 
   /* background-color: #4346ff; */
   /* border-radius: 12px; */
   /* color: #FFFFFF;
   border: 1px solid #FFFFFF; */ 
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
   /* text-align: center;
   text-decoration: none; */
   /* font-size: 14pt; */
-  width: 150px;
-  float: right;
+  /* width: 150px;
+  float: right; */
 }
 
 .about-pane {

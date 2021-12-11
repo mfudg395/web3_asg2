@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assets/images/logo.png";
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { Button, Drawer } from "antd";
 import { Modal } from "antd";
 
@@ -36,7 +36,7 @@ const Header = (props) => {
                 const response = await fetch(url);
                 let id = await response.json();
                 id = id[0].id;
-                
+
                 const apiUrl = "http://localhost:8080/api/user/" + id;
                 const apiResponse = await fetch(apiUrl);
                 let userData = await apiResponse.json();
@@ -58,21 +58,24 @@ const Header = (props) => {
                 <Link to="/home">
                     <img src={Logo} title="Book Logo" alt="Book Logo" className="site-logo" />
                 </Link>
-                <Button className="profile-button" type="default" size="large" onClick={showDrawer}>Profile</Button>
-                <Drawer title="Profile" placement="top" closable={true} visible={profileVisible} onClose={closeDrawer}>
-                    <Profile currentProfile={currentProfile}/>
-                </Drawer>
-                <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>
-                <Modal
-                    title="About"
-                    footer={null}
-                    centered
-                    maskClosable="true"
-                    width="75rem"
-                    onCancel={onClose}
-                    visible={aboutVisible}>
-                    <About />
-                </Modal>
+                <div className="header-button-container">
+                    <Button className="profile-button" type="default" size="large" onClick={showDrawer}>Profile</Button>
+                    <Drawer title="Profile" placement="top" closable={true} visible={profileVisible} onClose={closeDrawer}>
+                        <Profile currentProfile={currentProfile} />
+                    </Drawer>
+                    <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>
+                    <Modal
+                        title="About"
+                        footer={null}
+                        centered
+                        maskClosable="true"
+                        width="75rem"
+                        onCancel={onClose}
+                        visible={aboutVisible}>
+                        <About />
+                    </Modal>
+                    <Button className="logout-button" type="default" size="large">Logout</Button>
+                </div>
             </div>
         </header>
     );
