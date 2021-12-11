@@ -32,12 +32,11 @@ const Header = (props) => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const url = "http://localhost:8080/currentUser";
+                const url = "currentUser";
                 const response = await fetch(url);
-                let id = await response.json();
-                id = id[0].id;
+                const user = await response.json();
 
-                const apiUrl = "http://localhost:8080/api/user/" + id;
+                const apiUrl = "api/user/" + user[0].id;
                 const apiResponse = await fetch(apiUrl);
                 let userData = await apiResponse.json();
                 console.log(userData[0]);
@@ -60,7 +59,7 @@ const Header = (props) => {
                 </Link>
                 <div className="header-button-container">
                     <Button className="profile-button" type="default" size="large" onClick={showDrawer}>Profile</Button>
-                    <Drawer title="Profile" placement="top" closable={true} visible={profileVisible} onClose={closeDrawer}>
+                    <Drawer title="Profile" placement="right" closable={true} visible={profileVisible} onClose={closeDrawer}>
                         <Profile currentProfile={currentProfile} />
                     </Drawer>
                     <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>

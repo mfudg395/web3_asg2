@@ -1,5 +1,4 @@
 {
-  "homepage": ".",
   "name": "web3_asg1",
   "version": "0.1.0",
   "private": true,
@@ -34,7 +33,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "node server",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
