@@ -54,8 +54,8 @@ app.use(flash());
 
 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../build/index.html"));
-    app.use("/", express.static(path.join(__dirname, "../build")));
+    res.sendFile(path.join(__dirname, "./build/index.html"));
+    app.use("/", express.static(path.join(__dirname, "./build")));
     console.log(typeof req.user);
     console.log(req.user.id);
 });

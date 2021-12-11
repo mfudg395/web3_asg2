@@ -1,5 +1,4 @@
 {
-  "homepage": ".",
   "name": "web3_asg1",
   "version": "0.1.0",
   "engines": {
@@ -35,12 +34,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "node server",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server"
   },
   "eslintConfig": {
     "extends": [
