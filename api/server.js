@@ -13,15 +13,18 @@ const Play = require('./models/Play.js');
 const User = require('./models/User.js');
 require('./handlers/auth.js');
 
+let currentUser;
+
 // tell node to use json and HTTP header features
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // use the route handlers
-const router = require('./handlers/router.js');
-router.handleAllPlays(app, Play);
-router.handleSinglePlay(app, Play);
-router.handleSingleUser(app, User);
+// const router = require('./handlers/router.js');
+// router.handleAllPlays(app, Play);
+// router.handleSinglePlay(app, Play);
+// router.handleSingleUser(app, User);
+
 /* --- middle ware section --- */
 
 // not sure if we need this but ¯\_(ツ)_/¯
@@ -51,15 +54,23 @@ app.use(passport.session());
 // use express flash, which will be used for passing messages
 app.use(flash());
 
-// set up the passport authentication
-
-
 
 app.get('/', helper.ensureAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../build/index.html"));
     app.use("/", express.static(path.join(__dirname, "../build")));
-    console.log(__dirname + "../build/index.html");
+    console.log(typeof req.user);
+    console.log(req.user.id);
 });
+
+app.get("/currentUser", function(req, res) {
+    User.find({id: req.user.id}, 'id', (err, data) => {
+        if (err) {
+            res.send({message: "User not found"});
+        } else {
+            res.send(data);
+        }
+    })
+})
 
 // login and logout handlers
 app.get('/login', (req, res) => {
@@ -86,6 +97,37 @@ app.get('/logout', (req, resp) => {
 // app.use(function (req, res, next) {
 //     res.status(404).send("Sorry can't find that!")
 // });
+
+app.get('/api/list', helper.ensureAuthenticated, (req, resp) => {
+    Play.find({}, '-playText', (err, data) => {
+        if (err) {
+            resp.json({ message: 'Unable to connect to plays' });
+        } else {
+            resp.json(data);
+        }
+    });
+});
+
+app.get('/api/list/:id', helper.ensureAuthenticated, (req, resp) => {
+    Play.find({ id: req.params.id }, (err, data) => { // must be exact match
+        if (err) {
+            resp.json({ message: 'Play not found' });
+        } else {
+            resp.json(data);
+        }
+    });
+});
+
+
+app.get('/api/user/:id', helper.ensureAuthenticated, (req, resp) => {
+    User.find({ id: req.params.id }, 'id details picture membership email', (err, data) => {
+        if (err) {
+            resp.json({ message: 'User not found'});
+        } else {
+            resp.json(data);
+        }
+    })
+});
 
 // create connection to database
 const port = process.env.PORT;

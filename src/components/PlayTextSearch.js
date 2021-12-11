@@ -54,7 +54,7 @@ const PlayTextSearch = (props) => {
                 <input type="text" name="highlight" id="highlight" placeholder="Search" className="details-search-option" onChange={handleSearch}></input>
             </div>
             <br />
-            <Button type="primary" className="details-close-button" onClick={handleCloseClick}>Close</Button><button className="details-favorite-button" onClick={handleFavoriteClick}>❤️</button>
+            <Button type="primary" onClick={handleCloseClick}>Close</Button><button className="details-favorite-button" onClick={handleFavoriteClick}>❤️</button>
         </div>
     )
 }
