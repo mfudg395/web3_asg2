@@ -41,6 +41,12 @@ const About = (props) => {
                     <li><a href="https://unsplash.com/photos/YLSwjSy7stw">Alfons Morales, unsplash.com</a> - for hero image</li>
                     <li><a href="https://toppng.com/free-image/experience-the-discussion-online-library-book-logo-PNG-free-PNG-Images_189362">toppng.com</a> - for header logo</li>
                 </ul>
+                <p><b>API links:</b></p>
+                <ul>
+                    <li><a href="https://web3-plays-browser.herokuapp.com/api/list">/api/list</a></li>
+                    <li><a href="https://web3-plays-browser.herokuapp.com/api/list/macbeth">/api/list/id (uses Macbeth placeholder)</a></li>
+                    <li><a href="https://web3-plays-browser.herokuapp.com/api/user/1">/api/user/id (uses id 1 placeholder)</a></li>
+                </ul>
             </div>
         </div>
     );
