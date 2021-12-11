@@ -60,7 +60,7 @@ const Header = (props) => {
                 </Link>
                 <div className="header-button-container">
                     <Button className="profile-button" type="default" size="large" onClick={showDrawer}>Profile</Button>
-                    <Drawer title="Profile" placement="top" closable={true} visible={profileVisible} onClose={closeDrawer}>
+                    <Drawer title="Profile" placement="right" closable={true} visible={profileVisible} onClose={closeDrawer}>
                         <Profile currentProfile={currentProfile} />
                     </Drawer>
                     <Button className="about-button" type="default" size="large" onClick={showModal}>About</Button>
