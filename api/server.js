@@ -19,15 +19,8 @@ let currentUser;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// use the route handlers
-// const router = require('./handlers/router.js');
-// router.handleAllPlays(app, Play);
-// router.handleSinglePlay(app, Play);
-// router.handleSingleUser(app, User);
-
 /* --- middle ware section --- */
 
-// not sure if we need this but ¯\_(ツ)_/¯
 // serves up static files from the public folder. 
 app.use('/static', express.static(path.join(__dirname, 'build')));
 
@@ -60,10 +53,10 @@ app.get('/', helper.ensureAuthenticated, (req, res) => {
     console.log(req.user.id);
 });
 
-app.get("/currentUser", function(req, res) {
-    User.find({id: req.user.id}, 'id', (err, data) => {
+app.get("/currentUser", function (req, res) {
+    User.find({ id: req.user.id }, 'id', (err, data) => {
         if (err) {
-            res.send({message: "User not found"});
+            res.send({ message: "User not found" });
         } else {
             res.send(data);
         }
@@ -120,7 +113,7 @@ app.get('/api/list/:id', helper.ensureAuthenticated, (req, resp) => {
 app.get('/api/user/:id', helper.ensureAuthenticated, (req, resp) => {
     User.find({ id: req.params.id }, 'id details picture membership email', (err, data) => {
         if (err) {
-            resp.json({ message: 'User not found'});
+            resp.json({ message: 'User not found' });
         } else {
             resp.json(data);
         }
