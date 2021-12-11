@@ -50,25 +50,9 @@ button:hover {
 }
 
 .about-button, .profile-button, .logout-button {
-  /* transform: translateY(70%);
-  margin-right: 50px; */
   width: 150px;
   height: 40px;
   margin-right: 50px;
-  /* height: 40px;
-  margin-left: auto;
-  margin-right: 50px; */
-
-  /* background-color: #4346ff; */
-  /* border-radius: 12px; */
-  /* color: #FFFFFF;
-  border: 1px solid #FFFFFF; */ 
-  /* padding: 10px 10px; */
-  /* text-align: center;
-  text-decoration: none; */
-  /* font-size: 14pt; */
-  /* width: 150px;
-  float: right; */
 }
 
 .about-pane {
@@ -96,7 +80,6 @@ h2 {
 .main-container {
   display: grid;
   grid-template-columns: 20% 80%;
-  /* border: 1px solid black; */
 }
 
 .sort-container {
@@ -159,7 +142,6 @@ input.ant-input, select.ant-select-selector {
   position: absolute;
   top: 60%;
   margin-left: -15px;
-  /* left: 23%; */
 }
 
 .favorites-toggle-right {
@@ -198,11 +180,8 @@ input.ant-input, select.ant-select-selector {
 }
 
 .black-border {
-  /* border: 1px solid black; */
   border-bottom: 1px solid #6186ff;
   height: 800px;
-  /* margin-top: 5px; */
-  /* padding: 5px 5px; */
   overflow-y: scroll;
 }
 
